@@ -1,11 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <title>大媛媛</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-top: 30px;
+    }
+
+    p {
+      font-size: 24px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    #life,
+    #weeks,
+    #days,
+    #hours,
+    #minutes,
+    #seconds {
+      font-weight: bold;
+      font-size: 3em;
+      color: #ff7f50;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    你好 Miyana
+  <h1>和大媛媛相恋自</h1>
+  <p>2021年5月28日到现在已经过了：</p>
+  <p id="days"></p>
+  <p id="hours"></p>
+  <p id="minutes"></p>
+  <p id="seconds"></p>
+  <script>
+    // 设置目标日期
+    var targetDate = new Date(2021, 4, 28, 10, 55, 0);
+
+    calc();
+    setInterval(() => {
+      calc();
+    }, 1000);
+    function calc() {
+      // 获取当前时间
+      var now = new Date();
+      // 计算时间差
+      var timeDiff = now.getTime() - targetDate.getTime();
+
+      // 将时间差转换为天数
+      var days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+      document.getElementById("days").innerHTML = days + "天";
+
+      // 将时间差转换为小时数
+      var hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      document.getElementById("hours").innerHTML = hours + "小时";
+
+      // 将时间差转换为分钟数
+      var minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+      document.getElementById("minutes").innerHTML = minutes + "分钟";
+
+      // 将时间差转换为秒数
+      var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+      document.getElementById("seconds").innerHTML = seconds + "秒";
+
+    }
+  </script>
 </body>
+
 </html>
